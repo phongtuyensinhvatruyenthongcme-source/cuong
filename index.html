@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Web tặng người yêu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#FFF7FA;
+      --accent:#FF6B95;
+      --accent-dark:#E14576;
+      --card:#ffffff;
+      --muted:#7b7b7b;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,var(--bg),#FFEFF5);color:#333}
+    .container{max-width:980px;margin:32px auto;padding:24px}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .heart{width:56px;height:56px;background:radial-gradient(circle at 30% 30%,#fff,rgba(255,255,255,0));border-radius:50%;display:grid;place-items:center;box-shadow:0 8px 24px rgba(225,64,130,0.12)}
+    .heart svg{width:36px;height:36px;filter:drop-shadow(0 6px 18px rgba(225,64,130,0.18))}
+    h1{font-weight:700;margin:0}
+
+    .card{background:var(--card);border-radius:14px;padding:20px;margin-top:18px;box-shadow:0 10px 30px rgba(230,110,150,0.08)}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:center}
+    .hero-left h2{font-family:'Great Vibes',cursive;font-size:48px;margin:0;color:var(--accent-dark)}
+    .typewriter{font-size:18px;color:var(--muted);margin-top:8px;min-height:42px}
+
+    .photo{width:100%;height:320px;border-radius:12px;overflow:hidden;background:#f6e9f0;display:flex;align-items:center;justify-content:center}
+    .photo img{width:100%;height:100%;object-fit:cover}
+
+    .controls{display:flex;gap:8px;margin-top:12px}
+    .btn{background:var(--accent);border:none;color:white;padding:10px 14px;border-radius:999px;font-weight:600;cursor:pointer;box-shadow:0 8px 18px rgba(255,107,149,0.22)}
+    .btn.ghost{background:transparent;color:var(--accent-dark);border:2px solid rgba(225,64,130,0.12)}
+
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    .gallery img{width:100%;height:110px;object-fit:cover;border-radius:8px}
+
+    .surprise{display:flex;flex-direction:column;align-items:center;gap:12px;padding:28px;border-radius:12px;background:linear-gradient(180deg,#fff, #fff6fb)}
+    .meter{width:160px;height:160px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) 0deg, #ffd7e6 0deg);position:relative}
+    .meter .num{position:absolute;font-size:28px;font-weight:700;color:var(--accent-dark)}
+
+    footer{margin-top:18px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    /* mobile */
+    @media(max-width:880px){
+      .hero{grid-template-columns:1fr;}
+      .photo{height:240px}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="heart" aria-hidden>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-7.5-4.92-9.5-8.02C-1 6.8 5.2 2.9 8.4 5.9 10 7.6 12 9.5 12 9.5s2-1.9 3.6-3.6C18.8 2.9 25 6.8 21.5 12.98 19.5 16.08 12 21 12 21z" fill="url(#g)"/></svg>
+        </div>
+        <div>
+          <h1 id="site-title">Dành cho <span id="lover-name">Cường</span></h1>
+          <div style="color:var(--muted);font-size:13px">Một web nhỏ, nhiều yêu thương 💌</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="card hero">
+      <div class="hero-left">
+        <h2 id="hero-title">Dành cho Cường</h2>
+        <div class="typewriter" id="typewriter">Nhấn nút "Bật bất ngờ" để thấy món quà.</div>
+
+        <div class="controls">
+          <button class="btn" id="reveal">Bật bất ngờ</button>
+          <button class="btn ghost" id="edit">Chỉnh nội dung</button>
+          <button class="btn ghost" id="play-music">Phát nhạc</button>
+        </div>
+
+        <div class="gallery" id="gallery">
+          <img src="Downloads/z7274011947731_8417492f4d635a90ddf34d8df4e5e987.jpg" alt="ảnh 1">
+          <img src="Downloads/z7274011952380_90f1c788036995186e74b041beacca16.jpg" alt="ảnh 2">
+          <img src="Downloads/z7274011952659_a618415a59694620ad0642226416a697.jpg" alt="ảnh 3">
+        </div>
+      </div>
+
+      <aside class="surprise">
+        <div class="photo" id="main-photo">
+          <img src="Downloads/z7274011974624_d77fa6e159339c0378de687fbac799f7.jpg" alt="ảnh chính">
+        </div>
+        <div class="meter" id="love-meter" title="Yêu thương">
+          <div class="num" id="meter-num">0%</div>
+        </div>
+        <div style="font-size:13px;color:var(--muted)">Hẹn mãi bên nhau — nhấn <strong>Bật bất ngờ</strong> nhé</div>
+      </aside>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3 style="margin-top:0">Lời nhắn</h3>
+      <p id="message">Gửi em — người đã làm trái tim anh ấm hơn mỗi ngày. Cảm ơn em vì đã là em. Thay thế đoạn này bằng lời nhắn của bạn.</p>
+    </div>
+
+    <footer>
+      <div>Made with ❤️ — Tùy chỉnh dễ dàng</div>
+      <div style="font-style:italic">Nhớ đổi tên & ảnh trong mã nguồn</div>
+    </footer>
+  </div>
+
+  <!-- audio (thêm file mp3 vào cùng thư mục hoặc dùng URL) -->
+  <audio id="bgm" loop src=""></audio>
+
+  <canvas id="confetti-canvas" style="position:fixed;left:0;top:0;pointer-events:none;z-index:9999"></canvas>
+
+  <script>
+    // Thay đổi theo ý bạn
+    const loverName = 'Cường'; // đổi thành tên thật
+    const heroMsg = 'Anh là người đặc biệt nhất với em.';
+    const customMessage = `Gửi Cường — người mang đến cho em bình yên và hạnh phúc mỗi ngày. Cảm ơn anh vì luôn ở bên em.`;
+
+    document.getElementById('lover-name').textContent = loverName;
+    document.getElementById('hero-title').textContent = `Dành cho ${loverName}`;
+    document.getElementById('message').textContent = customMessage;
+
+    // Typewriter effect
+    const typeEl = document.getElementById('typewriter');
+    const typeText = heroMsg;
+    let i = 0;
+    function typeWriter(){
+      if(i <= typeText.length){
+        typeEl.textContent = typeText.slice(0,i);
+        i++;
+        setTimeout(typeWriter,50);
+      }
+    }
+    typeWriter();
+
+    // Love meter animation
+    function setMeter(p){
+      p = Math.max(0,Math.min(100,p));
+      const deg = p * 3.6;
+      document.getElementById('love-meter').style.background = `conic-gradient(var(--accent) 0deg, var(--accent) ${deg}deg, #ffd7e6 ${deg}deg)`;
+      document.getElementById('meter-num').textContent = p + '%';
+    }
+
+    // confetti (simple)
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let confettiParticles = [];
+
+    function resizeCanvas(){canvas.width = innerWidth; canvas.height = innerHeight}
+    addEventListener('resize',resizeCanvas); resizeCanvas();
+
+    function spawnConfetti(x,y){
+      for(let i=0;i<80;i++){
+        confettiParticles.push({x:x||innerWidth/2,y:y||innerHeight/3,vx:(Math.random()-0.5)*8,vy:(Math.random()-2)*6,rot:Math.random()*360,size:6+Math.random()*8,color:`hsl(${Math.random()*340},80%,60%)`,life:60+Math.random()*60});
+      }
+    }
+
+    function renderConfetti(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      confettiParticles.forEach((p,idx)=>{
+        p.x += p.vx; p.y += p.vy; p.vy += 0.25; p.rot += p.vx*2; p.life--;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+        ctx.fillStyle = p.color; ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6);
+        ctx.restore();
+        if(p.life<=0 || p.y>canvas.height+20) confettiParticles.splice(idx,1);
+      });
+      requestAnimationFrame(renderConfetti);
+    }
+    renderConfetti();
+
+    // Buttons
+    document.getElementById('reveal').addEventListener('click',()=>{
+      setMeter(100);
+      spawnConfetti(Math.random()*innerWidth,innerHeight*0.2 + Math.random()*100);
+      // gentle animation on message
+      const el = document.getElementById('message');
+      el.style.transform = 'scale(1.02)';
+      setTimeout(()=>el.style.transform = 'scale(1)',400);
+    });
+
+    document.getElementById('edit').addEventListener('click',()=>{
+      const newName = prompt('Điền tên người yêu:', loverName);
+      if(newName){ document.getElementById('lover-name').textContent = newName; document.getElementById('hero-title').textContent = `Dành cho ${newName}` }
+      const newMsg = prompt('Lời nhắn (một đoạn):', customMessage);
+      if(newMsg) document.getElementById('message').textContent = newMsg;
+    });
+
+    // Play/pause music
+    const bgm = document.getElementById('bgm');
+    let musicPlaying = false;
+    document.getElementById('play-music').addEventListener('click',async ()=>{
+      if(!bgm.src){
+        const url = prompt('Dán link mp3 hoặc để trống nếu muốn thêm sau (file phải hỗ trợ CORS):');
+        if(url) bgm.src = url;
+      }
+      try{
+        if(musicPlaying){await bgm.pause(); musicPlaying=false; document.getElementById('play-music').textContent='Phát nhạc'}
+        else{await bgm.play(); musicPlaying=true; document.getElementById('play-music').textContent='Tạm dừng'}
+      }catch(e){alert('Trình duyệt có thể chặn phát tự động. Hãy thử tải lên file mp3 vào cùng thư mục và nhấn lại.')}
+    });
+
+    // small guide: replace images by dropping into same folder and changing src in HTML
+  </script>
+</body>
+</html>
